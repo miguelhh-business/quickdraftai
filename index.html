@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickDraftAI — Free AI Writing Tools</title>
+<meta name="description" content="Free AI writing tools for professionals. Generate email subject lines, cover letters, LinkedIn bios, and cold emails in seconds. No signup required.">
+<meta name="keywords" content="AI writing tools, email subject line generator, cover letter generator, LinkedIn bio generator, cold email writer, free AI tools">
+<link rel="canonical" href="https://quickdraftai.org">
+<meta property="og:title" content="QuickDraftAI — Free AI Writing Tools">
+<meta property="og:description" content="Free AI writing tools. Email subjects, cover letters, LinkedIn bios, cold emails — generated in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quickdraftai.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c;--bg-card:#111116;--bg-input:#17171e;--border:#1e1e28;
+  --accent:#6cefb8;--accent2:#7c6cfc;--accent3:#fc6c8f;
+  --text-primary:#f0efff;--text-secondary:#8888aa;--text-muted:#44445a;
+  --font-title:'Bricolage Grotesque',sans-serif;--font-mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:var(--font-title);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+
+/* GRAIN OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+
+/* GLOW ORBS */
+.orb1{position:fixed;width:700px;height:700px;background:radial-gradient(circle,rgba(108,239,184,0.06) 0%,transparent 70%);border-radius:50%;top:-200px;right:-150px;pointer-events:none;z-index:0;}
+.orb2{position:fixed;width:500px;height:500px;background:radial-gradient(circle,rgba(124,108,252,0.05) 0%,transparent 70%);border-radius:50%;bottom:-100px;left:-100px;pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,12,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-weight:800;font-size:18px;color:var(--text-primary);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.nav-logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;}
+.nav-badge{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.08em;}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:100px 40px 80px;max-width:900px;margin:0 auto;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,239,184,0.08);border:1px solid rgba(108,239,184,0.18);color:var(--accent);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:5px 16px;border-radius:100px;margin-bottom:28px;font-family:var(--font-mono);animation:fadeUp 0.6s ease both;}
+.hero-badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.hero h1{font-size:clamp(44px,7vw,80px);font-weight:800;line-height:1.0;letter-spacing:-3px;margin-bottom:20px;animation:fadeUp 0.6s 0.1s ease both;opacity:0;}
+.hero h1 .line1{display:block;color:var(--text-primary);}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--text-secondary);max-width:520px;margin:0 auto 36px;line-height:1.7;animation:fadeUp 0.6s 0.2s ease both;opacity:0;}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.6s 0.3s ease both;opacity:0;}
+.btn-primary{padding:13px 28px;background:var(--accent);color:#0a0a0c;border:none;border-radius:100px;font-family:var(--font-title);font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(108,239,184,0.25);}
+.btn-secondary{padding:13px 28px;background:transparent;color:var(--text-secondary);border:1px solid var(--border);border-radius:100px;font-family:var(--font-title);font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;}
+.btn-secondary:hover{border-color:var(--text-muted);color:var(--text-primary);}
+.hero-stats{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:48px;padding-top:48px;border-top:1px solid var(--border);animation:fadeUp 0.6s 0.4s ease both;opacity:0;}
+.stat-item{text-align:center;}
+.stat-num{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--text-primary);}
+.stat-num span{color:var(--accent);}
+.stat-label{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+.stat-divider{width:1px;height:40px;background:var(--border);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* TOOLS GRID */
+.tools-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 40px 80px;}
+.tools-header{text-align:center;margin-bottom:40px;}
+.tools-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;}
+.tools-title{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1.5px;}
+.tools-title em{font-style:italic;color:var(--accent2);}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.tool-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;text-decoration:none;display:block;transition:all 0.2s;group:true;}
+.tool-card:hover{border-color:rgba(108,239,184,0.25);transform:translateY(-2px);}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity 0.2s;}
+.tool-card:hover::before{opacity:0.6;}
+.tool-num{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-bottom:14px;}
+.tool-icon{font-size:28px;margin-bottom:14px;display:block;}
+.tool-name{font-size:20px;font-weight:700;letter-spacing:-0.5px;color:var(--text-primary);margin-bottom:8px;}
+.tool-desc{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:18px;}
+.tool-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.tool-tag{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);background:rgba(255,255,255,0.04);padding:3px 8px;border-radius:4px;}
+.tool-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);transition:gap 0.2s;}
+.tool-card:hover .tool-cta{gap:10px;}
+
+/* HOW IT WORKS */
+.how-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 40px 80px;}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.how-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:28px;}
+.how-num{font-family:var(--font-mono);font-size:32px;font-weight:500;color:var(--border);margin-bottom:16px;line-height:1;}
+.how-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+.how-desc{font-size:13px;color:var(--text-secondary);line-height:1.6;}
+
+/* CTA SECTION */
+.cta-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 40px 100px;}
+.cta-card{background:linear-gradient(135deg,rgba(108,239,184,0.06),rgba(124,108,252,0.06));border:1px solid rgba(108,239,184,0.15);border-radius:24px;padding:56px;text-align:center;}
+.cta-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;margin-bottom:12px;}
+.cta-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;max-width:1000px;margin:0 auto;}
+.footer-logo{font-weight:800;font-size:15px;display:flex;align-items:center;gap:6px;}
+.footer-disc{font-size:12px;color:var(--text-muted);}
+
+@media(max-width:700px){
+  nav,.hero,.tools-section,.how-section,.cta-section,footer{padding-left:20px;padding-right:20px;}
+  .hero{padding-top:60px;}
+  .tools-grid{grid-template-columns:1fr;}
+  .how-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:20px;}
+  .stat-divider{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="orb1"></div>
+<div class="orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    QuickDraftAI
+  </a>
+  <span class="nav-badge">Free · No signup</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    4 Free AI Writing Tools
+  </div>
+  <h1>
+    <span class="line1">Write faster.</span>
+    <span class="line2">Sound smarter.</span>
+  </h1>
+  <p class="hero-sub">AI-powered writing tools for professionals. Generate emails, cover letters, LinkedIn bios, and cold outreach in seconds — completely free.</p>
+  <div class="hero-cta">
+    <a href="#tools" class="btn-primary">Explore tools →</a>
+    <a href="quickdraftai-email-subject-generator.html" class="btn-secondary">Try email subject generator</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num"><span>4</span></div>
+      <div class="stat-label">Free tools</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num"><span>0</span></div>
+      <div class="stat-label">Signup needed</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num"><span>∞</span></div>
+      <div class="stat-label">Drafts generated</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num"><span>10s</span></div>
+      <div class="stat-label">Average time</div>
+    </div>
+  </div>
+</header>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="tools-header">
+    <div class="tools-eyebrow">Writing tools</div>
+    <h2 class="tools-title">Pick your <em>tool</em></h2>
+  </div>
+  <div class="tools-grid">
+
+    <a href="quickdraftai-email-subject-generator.html" class="tool-card">
+      <div class="tool-num">01</div>
+      <span class="tool-icon">✉️</span>
+      <div class="tool-name">Email Subject Generator</div>
+      <div class="tool-desc">Generate 7 high-converting subject lines with psychological triggers. Boost your open rates instantly.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">Marketing</span>
+        <span class="tool-tag">Sales</span>
+        <span class="tool-tag">Newsletters</span>
+      </div>
+      <div class="tool-cta">Use this tool →</div>
+    </a>
+
+    <a href="quickdraftai-cover-letter-generator.html" class="tool-card">
+      <div class="tool-num">02</div>
+      <span class="tool-icon">📄</span>
+      <div class="tool-name">Cover Letter Generator</div>
+      <div class="tool-desc">ATS-friendly cover letters in 280–380 words. Tailored to any job description in under 10 seconds.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">Job Search</span>
+        <span class="tool-tag">ATS</span>
+        <span class="tool-tag">Career</span>
+      </div>
+      <div class="tool-cta">Use this tool →</div>
+    </a>
+
+    <a href="quickdraftai-linkedin-bio-generator.html" class="tool-card">
+      <div class="tool-num">03</div>
+      <span class="tool-icon">💼</span>
+      <div class="tool-name">LinkedIn Bio Generator</div>
+      <div class="tool-desc">3 versions of your LinkedIn About section — short, medium, and story format. Stand out from the crowd.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">LinkedIn</span>
+        <span class="tool-tag">Personal Brand</span>
+        <span class="tool-tag">Networking</span>
+      </div>
+      <div class="tool-cta">Use this tool →</div>
+    </a>
+
+    <a href="quickdraftai-cold-email-writer.html" class="tool-card">
+      <div class="tool-num">04</div>
+      <span class="tool-icon">🎯</span>
+      <div class="tool-name">Cold Email Writer</div>
+      <div class="tool-desc">3 cold email variations using the CO-STAR framework. Built for sales, partnerships, and outreach that actually gets replies.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">Sales</span>
+        <span class="tool-tag">Outreach</span>
+        <span class="tool-tag">B2B</span>
+      </div>
+      <div class="tool-cta">Use this tool →</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="tools-header">
+    <div class="tools-eyebrow">How it works</div>
+    <h2 class="tools-title">Three steps to your <em>draft</em></h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <div class="how-title">Pick your tool</div>
+      <div class="how-desc">Choose from email subjects, cover letters, LinkedIn bios, or cold emails — each built for a specific writing task.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <div class="how-title">Fill in the details</div>
+      <div class="how-desc">Answer a few quick questions about your goal, audience, and context. Takes less than 30 seconds.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <div class="how-title">Copy and use</div>
+      <div class="how-desc">Get multiple variations instantly. Copy the one you like, tweak if needed, and send. No account required.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-card">
+    <h2 class="cta-title">Start writing smarter today</h2>
+    <p class="cta-sub">Free forever. No account. No credit card. Just better writing.</p>
+    <a href="quickdraftai-email-subject-generator.html" class="btn-primary" style="font-size:15px;padding:14px 32px;">Try email subject generator →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <span class="nav-logo-dot"></span>
+    QuickDraftAI
+  </div>
+  <p class="footer-disc">© 2025 QuickDraftAI.org — Free AI Writing Tools · No signup required</p>
+</footer>
+
+</body>
+</html>
