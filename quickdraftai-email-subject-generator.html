@@ -130,7 +130,7 @@ footer a{color:var(--text-muted);text-decoration:none;}
 </main>
 <footer><p>© 2025 QuickDraftAI — Free AI Writing Tools &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></p></footer>
 <script>
-const ANTHROPIC_API_KEY = 'YOUR-API-KEY-HERE';
+const API_PROXY = 'https://elaborate-pasca-d3c6f8.netlify.app/.netlify/functions/quickdraft';
 function getVal(id){return document.getElementById(id)?.value?.trim()||'';}
 async function generateSubjects(){
   const topic=getVal('topic'),audience=getVal('audience'),emailType=getVal('emailType'),tone=getVal('tone');
@@ -159,13 +159,13 @@ Rules:
 Return ONLY valid JSON, no markdown, no backticks:
 {"subjects":[{"tag":"CURIOSITY","line":"subject line here"},{"tag":"URGENCY","line":"..."},{"tag":"BENEFIT","line":"..."},{"tag":"QUESTION","line":"..."},{"tag":"PERSONAL","line":"..."},{"tag":"SOCIAL PROOF","line":"..."},{"tag":"MYSTERY","line":"..."}]}`;
   try{
-    const response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const response=await fetch(API_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
     const data=await response.json();
     const text=data.content[0].text;
     const clean=text.replace(/```json|```/g,'').trim();
     const parsed=JSON.parse(clean);
     renderSubjects(parsed.subjects);
-  }catch(err){console.error(err);alert('Something went wrong. Please check your API key.');}
+  }catch(err){console.error(err);alert('Something went wrong. Please try again.');}
   finally{btn.disabled=false;spinner.style.display='none';btnIcon.style.display='inline';btnText.textContent='Generate 7 Subject Lines';}
 }
 function renderSubjects(subjects){
