@@ -20,4 +20,40 @@
     <loc>https://quickdraftai.org/quickdraftai-cold-email-writer.html</loc>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://quickdraftai.org/blog.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/blog-cover-letter-ats-2026.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/blog-email-subject-lines-open-rates.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/blog-linkedin-bio-examples.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/blog-cold-email-templates-replies.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/blog-ai-professional-writing.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/about.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/privacy.html</loc>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://quickdraftai.org/terms.html</loc>
+    <priority>0.4</priority>
+  </url>
 </urlset>
